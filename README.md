@@ -27,6 +27,7 @@
 * 8GB 1070 Ti or 1080 Ti (Minimum)
 * Above 8GB Ram
 * Above 410 version Nvidia Driver
+Reprocreated work using [this article](http://joshua-p-r-pan.blogspot.com/2018/05/violence-detection-by-cnn-lstm.html) and [git](https://github.com/JoshuaPiinRueyPan/ViolenceDetection)
 
 # Architecture of Project:
 
@@ -77,7 +78,7 @@
 
 # Trained Model 
 
-Pre-trained model for violence detection with video accuracy of 98% and frame accuracy of 97% comprises of hockey+Pecliculas+jogging+walking_datatset_checkpoint click [here](https://drive.google.com/drive/folders/1MXij1dKYNNGn9eLD2_weuLupffoG9zNa) to download. 
+Pre-trained model for violence detection with video accuracy of 98% and frame accuracy of 97% comprises of hockey+Pecliculas+jogging+walking_datatset_checkpoint click [here](https://drive.google.com/drive/folders/1Tu0sIrcbAOx2vqJMD7tXIj6KkhWuvS5s?usp=sharing) to download. 
 
 # Deploy
 After we have trained a model, we can input a video and see its performance by following procedures:
