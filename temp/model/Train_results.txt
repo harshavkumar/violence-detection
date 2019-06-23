@@ -1,0 +1,292 @@
+
+ Using Network:  src.net.G2D19_P2OF_ResHB_1LSTM 
+
+In OpticalFlow:
+	 pool2.shape =  (?, 112, 112, 32)
+	 after transpose, out.shape =  (?, 112, 112, 32, 2)
+	 before Conv2, out.shape =  (?, 112, 112, 64)
+	 before Fc, out.shape =  (?, 28, 28, 64)
+	 Fc final.shape =  (?, 1024)
+opticalFlowOut.shape =  (?, 1024)
+In CNN:
+	 darknetOutput.shape =  (?, 7, 7, 1024)
+	 after transpose, out.shape =  (?, 7, 7, 1024, 2)
+	 before ConcatConv, out.shape =  (?, 7, 7, 2048)
+	 before Fc, out.shape =  (?, 7, 7, 128)
+	 Fc out.shape =  (?, 1024)
+In Concat:
+	 before Fc, out.shape =  (?, 2048)
+before LSTM, shape =  (?, ?, 1024)
+
+WARNING:tensorflow:From /home/ubuntu/ViolenceDetection/src/Classifier.py:34: softmax_cross_entropy_with_logits (from tensorflow.python.ops.nn_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+
+Future major versions of TensorFlow will allow gradients to flow
+into the labels input on backprop by default.
+
+See tf.nn.softmax_cross_entropy_with_logits_v2.
+
+Reading Training set...
+	 Done.
+
+Reading Validation set...
+	 Done.
+
+Reading Test set...
+	 Done.
+
+2019-01-29 12:04:47.688992: I tensorflow/core/platform/cpu_feature_guard.cc:140] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2019-01-29 12:04:47.872846: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:898] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2019-01-29 12:04:47.873560: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1212] Found device 0 with properties: 
+name: Tesla K80 major: 3 minor: 7 memoryClockRate(GHz): 0.8235
+pciBusID: 0000:00:17.0
+totalMemory: 11.17GiB freeMemory: 11.01GiB
+2019-01-29 12:04:47.970564: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:898] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2019-01-29 12:04:47.971272: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1212] Found device 1 with properties: 
+name: Tesla K80 major: 3 minor: 7 memoryClockRate(GHz): 0.8235
+pciBusID: 0000:00:18.0
+totalMemory: 11.17GiB freeMemory: 11.01GiB
+2019-01-29 12:04:48.064872: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:898] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2019-01-29 12:04:48.065590: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1212] Found device 2 with properties: 
+name: Tesla K80 major: 3 minor: 7 memoryClockRate(GHz): 0.8235
+pciBusID: 0000:00:19.0
+totalMemory: 11.17GiB freeMemory: 11.01GiB
+2019-01-29 12:04:48.169768: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:898] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2019-01-29 12:04:48.170478: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1212] Found device 3 with properties: 
+name: Tesla K80 major: 3 minor: 7 memoryClockRate(GHz): 0.8235
+pciBusID: 0000:00:1a.0
+totalMemory: 11.17GiB freeMemory: 11.01GiB
+2019-01-29 12:04:48.296059: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:898] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2019-01-29 12:04:48.296775: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1212] Found device 4 with properties: 
+name: Tesla K80 major: 3 minor: 7 memoryClockRate(GHz): 0.8235
+pciBusID: 0000:00:1b.0
+totalMemory: 11.17GiB freeMemory: 11.04GiB
+2019-01-29 12:04:48.422816: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:898] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2019-01-29 12:04:48.423574: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1212] Found device 5 with properties: 
+name: Tesla K80 major: 3 minor: 7 memoryClockRate(GHz): 0.8235
+pciBusID: 0000:00:1c.0
+totalMemory: 11.17GiB freeMemory: 11.04GiB
+2019-01-29 12:04:48.541109: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:898] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2019-01-29 12:04:48.541849: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1212] Found device 6 with properties: 
+name: Tesla K80 major: 3 minor: 7 memoryClockRate(GHz): 0.8235
+pciBusID: 0000:00:1d.0
+totalMemory: 11.17GiB freeMemory: 11.04GiB
+2019-01-29 12:04:48.701474: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:898] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2019-01-29 12:04:48.702505: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1212] Found device 7 with properties: 
+name: Tesla K80 major: 3 minor: 7 memoryClockRate(GHz): 0.8235
+pciBusID: 0000:00:1e.0
+totalMemory: 11.17GiB freeMemory: 11.04GiB
+2019-01-29 12:04:48.708027: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1227] Device peer to peer matrix
+2019-01-29 12:04:48.708687: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1233] DMA: 0 1 2 3 4 5 6 7 
+2019-01-29 12:04:48.708731: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1243] 0:   Y Y Y Y Y Y Y Y 
+2019-01-29 12:04:48.708762: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1243] 1:   Y Y Y Y Y Y Y Y 
+2019-01-29 12:04:48.708785: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1243] 2:   Y Y Y Y Y Y Y Y 
+2019-01-29 12:04:48.708812: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1243] 3:   Y Y Y Y Y Y Y Y 
+2019-01-29 12:04:48.708832: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1243] 4:   Y Y Y Y Y Y Y Y 
+2019-01-29 12:04:48.708846: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1243] 5:   Y Y Y Y Y Y Y Y 
+2019-01-29 12:04:48.708878: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1243] 6:   Y Y Y Y Y Y Y Y 
+2019-01-29 12:04:48.708906: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1243] 7:   Y Y Y Y Y Y Y Y 
+2019-01-29 12:04:48.708975: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1312] Adding visible gpu devices: 0, 1, 2, 3, 4, 5, 6, 7
+2019-01-29 12:04:51.724764: I tensorflow/core/common_runtime/gpu/gpu_device.cc:993] Creating TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 10669 MB memory) -> physical GPU (device: 0, name: Tesla K80, pci bus id: 0000:00:17.0, compute capability: 3.7)
+2019-01-29 12:04:52.032820: I tensorflow/core/common_runtime/gpu/gpu_device.cc:993] Creating TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:1 with 10669 MB memory) -> physical GPU (device: 1, name: Tesla K80, pci bus id: 0000:00:18.0, compute capability: 3.7)
+2019-01-29 12:04:52.247293: I tensorflow/core/common_runtime/gpu/gpu_device.cc:993] Creating TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:2 with 10669 MB memory) -> physical GPU (device: 2, name: Tesla K80, pci bus id: 0000:00:19.0, compute capability: 3.7)
+2019-01-29 12:04:52.410558: I tensorflow/core/common_runtime/gpu/gpu_device.cc:993] Creating TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:3 with 10667 MB memory) -> physical GPU (device: 3, name: Tesla K80, pci bus id: 0000:00:1a.0, compute capability: 3.7)
+2019-01-29 12:04:52.625030: I tensorflow/core/common_runtime/gpu/gpu_device.cc:993] Creating TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:4 with 10700 MB memory) -> physical GPU (device: 4, name: Tesla K80, pci bus id: 0000:00:1b.0, compute capability: 3.7)
+2019-01-29 12:04:52.800718: I tensorflow/core/common_runtime/gpu/gpu_device.cc:993] Creating TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:5 with 10703 MB memory) -> physical GPU (device: 5, name: Tesla K80, pci bus id: 0000:00:1c.0, compute capability: 3.7)
+2019-01-29 12:04:52.976137: I tensorflow/core/common_runtime/gpu/gpu_device.cc:993] Creating TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:6 with 10703 MB memory) -> physical GPU (device: 6, name: Tesla K80, pci bus id: 0000:00:1d.0, compute capability: 3.7)
+2019-01-29 12:04:53.189895: I tensorflow/core/common_runtime/gpu/gpu_device.cc:993] Creating TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:7 with 10701 MB memory) -> physical GPU (device: 7, name: Tesla K80, pci bus id: 0000:00:1e.0, compute capability: 3.7)
+Path to save mode:  temp/G2D19_P2OF_ResHB_1LSTM_dataAug_expLR
+
+Start Training...
+
+2019-01-29 12:05:00.216442: E tensorflow/stream_executor/cuda/cuda_dnn.cc:378] Loaded runtime CuDNN library: 7301 (compatibility version 7300) but source was compiled with 7004 (compatibility version 7000).  If using a binary install, upgrade your CuDNN library to match.  If building from sources, make sure the library loaded at runtime matches a compatible version specified during compile configuration.
+2019-01-29 12:05:00.219431: F tensorflow/core/kernels/conv_ops.cc:717] Check failed: stream->parent()->GetConvolveAlgorithms( conv_parameters.ShouldIncludeWinogradNonfusedAlgo<T>(), &algorithms) 
+Aborted (core dumped)
+ubuntu@ip-172-31-47-200:~/ViolenceDetection$ python3 Train.py
+
+ Using Network:  src.net.G2D19_P2OF_ResHB_1LSTM 
+
+2019-01-29 12:09:46.977083: W tensorflow/core/graph/graph_constructor.cc:1263] Importing a graph with a lower producer version 24 into an existing graph with producer version 27. Shape inference will have run different parts of the graph with different producer versions.
+In OpticalFlow:
+	 pool2.shape =  (?, 112, 112, 32)
+	 after transpose, out.shape =  (?, 112, 112, 32, 2)
+	 before Conv2, out.shape =  (?, 112, 112, 64)
+	 before Fc, out.shape =  (?, 28, 28, 64)
+	 Fc final.shape =  (?, 1024)
+opticalFlowOut.shape =  (?, 1024)
+In CNN:
+	 darknetOutput.shape =  (?, 7, 7, 1024)
+	 after transpose, out.shape =  (?, 7, 7, 1024, 2)
+	 before ConcatConv, out.shape =  (?, 7, 7, 2048)
+	 before Fc, out.shape =  (?, 7, 7, 128)
+	 Fc out.shape =  (?, 1024)
+In Concat:
+	 before Fc, out.shape =  (?, 2048)
+before LSTM, shape =  (?, ?, 1024)
+
+WARNING:tensorflow:From /home/ubuntu/ViolenceDetection/src/Classifier.py:34: softmax_cross_entropy_with_logits (from tensorflow.python.ops.nn_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+
+Future major versions of TensorFlow will allow gradients to flow
+into the labels input on backprop by default.
+
+See `tf.nn.softmax_cross_entropy_with_logits_v2`.
+
+Reading Training set...
+	 Done.
+
+Reading Validation set...
+	 Done.
+
+Reading Test set...
+	 Done.
+
+2019-01-29 12:10:07.096651: I tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2019-01-29 12:10:07.258262: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:964] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2019-01-29 12:10:07.259577: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1411] Found device 0 with properties: 
+name: Tesla K80 major: 3 minor: 7 memoryClockRate(GHz): 0.8235
+pciBusID: 0000:00:17.0
+totalMemory: 11.17GiB freeMemory: 11.01GiB
+2019-01-29 12:10:07.369164: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:964] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2019-01-29 12:10:07.370261: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1411] Found device 1 with properties: 
+name: Tesla K80 major: 3 minor: 7 memoryClockRate(GHz): 0.8235
+pciBusID: 0000:00:18.0
+totalMemory: 11.17GiB freeMemory: 11.01GiB
+2019-01-29 12:10:07.463174: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:964] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2019-01-29 12:10:07.464294: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1411] Found device 2 with properties: 
+name: Tesla K80 major: 3 minor: 7 memoryClockRate(GHz): 0.8235
+pciBusID: 0000:00:19.0
+totalMemory: 11.17GiB freeMemory: 11.01GiB
+2019-01-29 12:10:07.566626: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:964] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2019-01-29 12:10:07.567710: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1411] Found device 3 with properties: 
+name: Tesla K80 major: 3 minor: 7 memoryClockRate(GHz): 0.8235
+pciBusID: 0000:00:1a.0
+totalMemory: 11.17GiB freeMemory: 11.01GiB
+2019-01-29 12:10:07.673177: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:964] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2019-01-29 12:10:07.674256: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1411] Found device 4 with properties: 
+name: Tesla K80 major: 3 minor: 7 memoryClockRate(GHz): 0.8235
+pciBusID: 0000:00:1b.0
+totalMemory: 11.17GiB freeMemory: 11.04GiB
+2019-01-29 12:10:07.788432: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:964] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2019-01-29 12:10:07.789525: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1411] Found device 5 with properties: 
+name: Tesla K80 major: 3 minor: 7 memoryClockRate(GHz): 0.8235
+pciBusID: 0000:00:1c.0
+totalMemory: 11.17GiB freeMemory: 11.04GiB
+2019-01-29 12:10:08.027928: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:964] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2019-01-29 12:10:08.029043: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1411] Found device 6 with properties: 
+name: Tesla K80 major: 3 minor: 7 memoryClockRate(GHz): 0.8235
+pciBusID: 0000:00:1d.0
+totalMemory: 11.17GiB freeMemory: 11.04GiB
+2019-01-29 12:10:08.218412: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:964] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2019-01-29 12:10:08.219504: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1411] Found device 7 with properties: 
+name: Tesla K80 major: 3 minor: 7 memoryClockRate(GHz): 0.8235
+pciBusID: 0000:00:1e.0
+totalMemory: 11.17GiB freeMemory: 11.04GiB
+2019-01-29 12:10:08.223012: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1490] Adding visible gpu devices: 0, 1, 2, 3, 4, 5, 6, 7
+2019-01-29 12:10:11.759685: I tensorflow/core/common_runtime/gpu/gpu_device.cc:971] Device interconnect StreamExecutor with strength 1 edge matrix:
+2019-01-29 12:10:11.759737: I tensorflow/core/common_runtime/gpu/gpu_device.cc:977]      0 1 2 3 4 5 6 7 
+2019-01-29 12:10:11.759748: I tensorflow/core/common_runtime/gpu/gpu_device.cc:990] 0:   N Y Y Y Y Y Y Y 
+2019-01-29 12:10:11.759760: I tensorflow/core/common_runtime/gpu/gpu_device.cc:990] 1:   Y N Y Y Y Y Y Y 
+2019-01-29 12:10:11.759773: I tensorflow/core/common_runtime/gpu/gpu_device.cc:990] 2:   Y Y N Y Y Y Y Y 
+2019-01-29 12:10:11.759785: I tensorflow/core/common_runtime/gpu/gpu_device.cc:990] 3:   Y Y Y N Y Y Y Y 
+2019-01-29 12:10:11.759796: I tensorflow/core/common_runtime/gpu/gpu_device.cc:990] 4:   Y Y Y Y N Y Y Y 
+2019-01-29 12:10:11.759807: I tensorflow/core/common_runtime/gpu/gpu_device.cc:990] 5:   Y Y Y Y Y N Y Y 
+2019-01-29 12:10:11.759818: I tensorflow/core/common_runtime/gpu/gpu_device.cc:990] 6:   Y Y Y Y Y Y N Y 
+2019-01-29 12:10:11.759852: I tensorflow/core/common_runtime/gpu/gpu_device.cc:990] 7:   Y Y Y Y Y Y Y N 
+2019-01-29 12:10:11.761589: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1103] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 10661 MB memory) -> physical GPU (device: 0, name: Tesla K80, pci bus id: 0000:00:17.0, compute capability: 3.7)
+2019-01-29 12:10:11.941362: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1103] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:1 with 10661 MB memory) -> physical GPU (device: 1, name: Tesla K80, pci bus id: 0000:00:18.0, compute capability: 3.7)
+2019-01-29 12:10:12.077685: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1103] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:2 with 10661 MB memory) -> physical GPU (device: 2, name: Tesla K80, pci bus id: 0000:00:19.0, compute capability: 3.7)
+2019-01-29 12:10:12.240022: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1103] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:3 with 10661 MB memory) -> physical GPU (device: 3, name: Tesla K80, pci bus id: 0000:00:1a.0, compute capability: 3.7)
+2019-01-29 12:10:12.376450: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1103] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:4 with 10695 MB memory) -> physical GPU (device: 4, name: Tesla K80, pci bus id: 0000:00:1b.0, compute capability: 3.7)
+2019-01-29 12:10:12.512067: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1103] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:5 with 10697 MB memory) -> physical GPU (device: 5, name: Tesla K80, pci bus id: 0000:00:1c.0, compute capability: 3.7)
+2019-01-29 12:10:12.648412: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1103] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:6 with 10697 MB memory) -> physical GPU (device: 6, name: Tesla K80, pci bus id: 0000:00:1d.0, compute capability: 3.7)
+2019-01-29 12:10:12.784507: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1103] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:7 with 10697 MB memory) -> physical GPU (device: 7, name: Tesla K80, pci bus id: 0000:00:1e.0, compute capability: 3.7)
+Path to save mode:  temp/G2D19_P2OF_ResHB_1LSTM_dataAug_expLR
+
+Start Training...
+
+Averaged GetBatch time:  0.00045108795166015625
+Epoch: 1 ==================================================================================================================
+	 Back Propergation time measurement:
+		 duration:  550.42 s/epoch
+		 average:  4.40 s/batch
+
+	 validation:
+	     loss: 0.3919      frame accuracy: 0.9034      best frame threshold: 3      video accuracy: 0.9400      duration: 59.15(s)
+
+	 train:
+	     loss: 0.3980      frame accuracy: 0.8961      given frame threshold: 3      video accuracy: 0.9200      duration: 270.49(s)
+
+	 test:
+	     loss: 0.4173      frame accuracy: 0.8711      given frame threshold: 3      video accuracy: 0.9050      duration: 214.02(s)
+
+Averaged GetBatch time:  0.0003843784332275391
+Epoch: 2 ==================================================================================================================
+	 Back Propergation time measurement:
+		 duration:  531.81 s/epoch
+		 average:  4.25 s/batch
+
+	 validation:
+	     loss: 0.3004      frame accuracy: 0.9021      best frame threshold: 1      video accuracy: 0.9500      duration: 53.32(s)
+
+	 train:
+	     loss: 0.3285      frame accuracy: 0.8911      given frame threshold: 1      video accuracy: 0.9200      duration: 275.41(s)
+
+	 test:
+	     loss: 0.3472      frame accuracy: 0.8824      given frame threshold: 1      video accuracy: 0.9050      duration: 222.01(s)
+
+Averaged GetBatch time:  0.0003891716003417969
+Epoch: 3 ==================================================================================================================
+	 Back Propergation time measurement:
+		 duration:  534.65 s/epoch
+		 average:  4.28 s/batch
+
+	 validation:
+	     loss: 0.3299      frame accuracy: 0.8751      best frame threshold: 35      video accuracy: 0.9400      duration: 53.73(s)
+
+	 train:
+	     loss: 0.3873      frame accuracy: 0.8328      given frame threshold: 35      video accuracy: 0.8820      duration: 275.87(s)
+
+	 test:
+	     loss: 0.3454      frame accuracy: 0.8721      given frame threshold: 35      video accuracy: 0.9075      duration: 222.75(s)
+
+Averaged GetBatch time:  0.00036408042907714846
+Epoch: 4 ==================================================================================================================
+	 Back Propergation time measurement:
+		 duration:  531.99 s/epoch
+		 average:  4.26 s/batch
+
+	 validation:
+	     loss: 0.2474      frame accuracy: 0.9107      best frame threshold: 1      video accuracy: 0.9600      duration: 53.44(s)
+
+	 train:
+	     loss: 0.2405      frame accuracy: 0.9248      given frame threshold: 1      video accuracy: 0.9540      duration: 274.56(s)
+
+	 test:
+	     loss: 0.2859      frame accuracy: 0.8951      given frame threshold: 1      video accuracy: 0.9375      duration: 221.37(s)
+
+Averaged GetBatch time:  0.0003791904449462891
+Epoch: 5 ==================================================================================================================
+	 Back Propergation time measurement:
+		 duration:  531.69 s/epoch
+		 average:  4.25 s/batch
+
+	 validation:
+	     loss: 0.1529      frame accuracy: 0.9778      best frame threshold: 25      video accuracy: 0.9900      duration: 54.59(s)
+
+	 train:
+	     loss: 0.2120      frame accuracy: 0.9348      given frame threshold: 25      video accuracy: 0.9340      duration: 274.52(s)
+
+	 test:
+	     loss: 0.2074      frame accuracy: 0.9440      given frame threshold: 25      video accuracy: 0.9525      duration: 219.54(s)
+
+Optimization finished.
+Send Stop singal to Loading threads...
+	 The Loading threads will Stop in about 100 (s).
+Send Stop singal to Loading threads...
+	 The Loading threads will Stop in about 100 (s).
+Send Stop singal to Loading threads...
+	 The Loading threads will Stop in about 100 (s).
+Send Stop singal to Loading threads...
+	 The Loading threads will Stop in about 100 (s).
+
