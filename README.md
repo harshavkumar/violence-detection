@@ -27,7 +27,7 @@
 * 8GB 1070 Ti or 1080 Ti (Minimum)
 * Above 8GB Ram
 * Above 410 version Nvidia Driver
-Reprocreated work using [this article](http://joshua-p-r-pan.blogspot.com/2018/05/violence-detection-by-cnn-lstm.html) and [git](https://github.com/JoshuaPiinRueyPan/ViolenceDetection)
+####### Reprocreated work using [this article](http://joshua-p-r-pan.blogspot.com/2018/05/violence-detection-by-cnn-lstm.html) and [git](https://github.com/JoshuaPiinRueyPan/ViolenceDetection)
 
 # Architecture of Project:
 
